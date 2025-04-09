@@ -1,31 +1,9 @@
-import React, { useState } from "react"; import { Input } from "@/components/ui/input"; import { Button } from "@/components/ui/button"; import { Card, CardContent } from "@/components/ui/card"; import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"; import { ShoppingCart, Search, Plus } from "lucide-react";
-
-export default function Home() { const [products, setProducts] = useState([ { id: 1, name: "Bremsscheibe vorne", image: "https://via.placeholder.com/200", price: "59,99 €", }, { id: 2, name: "Ölfilter Set", image: "https://via.placeholder.com/200", price: "24,99 €", }, { id: 3, name: "Reifen Sommer 205/55 R16", image: "https://via.placeholder.com/200", price: "89,99 €", }, ]);
-
-const [newProduct, setNewProduct] = useState({ name: "", image: "", price: "" });
-
-const handleAddProduct = () => { const newItem = { ...newProduct, id: products.length + 1, }; setProducts([...products, newItem]); setNewProduct({ name: "", image: "", price: "" }); };
-
-return ( <div className="min-h-screen bg-gray-100"> {/* Header */} <header className="bg-white shadow p-4 flex justify-between items-center"> <h1 className="text-xl font-bold">AutoParts24</h1> <div className="flex items-center gap-2 w-1/2"> <Input placeholder="Suche nach Autoteilen..." /> <Button variant="outline"> <Search className="w-4 h-4" /> </Button> </div> <div className="flex gap-2 items-center"> <Dialog> <DialogTrigger asChild> <Button variant="default" className="flex items-center gap-1"> <Plus className="w-4 h-4" /> Produkt hinzufügen </Button> </DialogTrigger> <DialogContent> <DialogHeader> <DialogTitle>Neues Produkt erfassen</DialogTitle> </DialogHeader> <div className="flex flex-col gap-4"> <Input placeholder="Produktname" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} /> <Input placeholder="Bild-URL" value={newProduct.image} onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })} /> <Input placeholder="Preis z. B. 29,99 €" value={newProduct.price} onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })} /> <Button onClick={handleAddProduct}>Produkt hinzufügen</Button> </div> </DialogContent> </Dialog> <Button variant="ghost"> <ShoppingCart className="w-5 h-5" /> </Button> </div> </header>
-
-{/* Produktgrid */}
-  <main className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-    {products.map((product) => (
-      <Card key={product.id} className="hover:shadow-xl">
-        <CardContent className="p-4">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-40 object-cover mb-2 rounded"
-          />
-          <h2 className="text-lg font-semibold mb-1">{product.name}</h2>
-          <p className="text-gray-700">{product.price}</p>
-          <Button className="mt-3 w-full">In den Warenkorb</Button>
-        </CardContent>
-      </Card>
-    ))}
-  </main>
-</div>
-
-); }
-
+autoteile-shop-frontend/
+├── public/
+├── src/
+│   └── App.jsx
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+├── index.html
+└── vite.config.js
